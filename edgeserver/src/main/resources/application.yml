@@ -24,6 +24,15 @@ zuul:
 
 server:
   port: 9000
+  
+security:
+  oauth2:
+    resource:
+      userInfoUri: http://localhost:9999/uaa/user  
+      
+#management:
+#  security:
+#    enabled: false      
 
 logging:
   level:

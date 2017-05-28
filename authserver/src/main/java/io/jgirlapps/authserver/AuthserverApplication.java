@@ -1,5 +1,7 @@
 package io.jgirlapps.authserver;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,9 +21,12 @@ import java.security.Principal;
 @RestController
 @EnableResourceServer
 public class AuthserverApplication {
+	
+	private static final Logger LOG = LoggerFactory.getLogger(AuthserverApplication.class);
 
 	@RequestMapping("/user")
 	public Principal user(Principal user) {
+		LOG.info("user method called");
 		return user;
 	}
 
@@ -29,7 +34,7 @@ public class AuthserverApplication {
 		SpringApplication.run(AuthserverApplication.class, args);
 	}
 	
-	@Configuration
+	@Configuration	
 	@EnableAuthorizationServer
 	protected static class OAuth2Config extends AuthorizationServerConfigurerAdapter {
 
@@ -38,11 +43,15 @@ public class AuthserverApplication {
 		
 		@Override
 		public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+			LOG.info("configure endpoints has been called");
 			endpoints.authenticationManager(authenticationManager);
 		}
 		
 		@Override
 		public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+			
+			LOG.info("configure clients has been called");
+			
 			clients.inMemory()
 				.withClient("acme")
 				.secret("acmesecret")
