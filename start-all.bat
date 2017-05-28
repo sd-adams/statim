@@ -1,0 +1,5 @@
+start cmd /K "cd servicediscovery & mvn spring-boot:run"
+start cmd /K "cd authserver & mvn spring-boot:run"
+start cmd /K "cd edgeserver & mvn spring-boot:run"
+start cmd /K "cd orderendpoint & mvn spring-boot:run"
+start cmd /K "cd orderservice & mvn spring-boot:run"
