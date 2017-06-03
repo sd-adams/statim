@@ -1,0 +1,9 @@
+http://callistaenterprise.se/blogg/teknik/2015/05/20/blog-series-building-microservices/
+http://www.hascode.com/2016/03/setting-up-an-oauth2-authorization-server-and-resource-provider-with-spring-boot/
+https://aws.amazon.com/blogs/compute/microservice-delivery-with-amazon-ecs-and-application-load-balancers/?sc_ichannel=ha&sc_icampaign=pac_ed0501_ecs&sc_isegment=en&sc_iplace=ed&sc_icontent=blog_ecs
+http://www.baeldung.com/rest-template
+https://spring.io/team/dsyer
+http://cloud.spring.io/spring-cloud-static/spring-cloud.html
+http://stytex.de/blog/2016/02/01/spring-cloud-security-with-oauth2/
+https://spring.io/blog/2015/02/03/sso-with-oauth2-angular-js-and-spring-security-part-v
+
