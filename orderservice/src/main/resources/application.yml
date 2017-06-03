@@ -14,3 +14,10 @@ eureka:
     serviceUrl:
       #defaultZone: http://192.168.0.22:8761/eureka
       defaultZone: {$SERVICE_DISCOVERY_URL}
+#security:
+#  ignored: /**     
+
+security:
+  oauth2:
+    resource:
+      userInfoUri: http://localhost:9999/uaa/user      

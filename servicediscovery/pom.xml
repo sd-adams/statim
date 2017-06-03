@@ -2,14 +2,14 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>jgirlapps.io</groupId>
+	<groupId>io.jgirlapps</groupId>
 	<artifactId>servicediscovery</artifactId>
 	<version>0.0.1</version>
 	<packaging>jar</packaging>
 
     <properties>
         <!-- Spring boot main class -->
-        <start-class>jgirlapps.io.servicediscovery.ServiceDiscoveryApplication</start-class>
+        <start-class>io.jgirlapps.servicediscovery.ServiceDiscoveryApplication</start-class>
 </properties>
     
 	<name>servicediscovery</name>
@@ -100,7 +100,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>jgirlapps.io.servicediscovery.ServiceDiscoveryApplication</mainClass>
+							<mainClass>io.jgirlapps.servicediscovery.ServiceDiscoveryApplication</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
@@ -146,7 +146,7 @@
     <artifactId>spring-boot-maven-plugin</artifactId>
     <configuration>
       <fork>true</fork>
-      <mainClass>jgirlapps.io.servicediscovery.ServiceDiscoveryApplication</mainClass>
+      <mainClass>io.jgirlapps.servicediscovery.ServiceDiscoveryApplication</mainClass>
     </configuration>
     <executions>
       <execution>

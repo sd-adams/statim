@@ -1,6 +1,7 @@
 package io.jgirlapps.orderservice.service;
 
 import java.net.URI;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -11,6 +12,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -41,13 +44,30 @@ public class OrderService {
 	}
 	
 	@RequestMapping("/orderservice/{orderId}")
-	public ResponseEntity<Order> getOrder(@PathVariable int orderId) {
+	public ResponseEntity<Order> getOrder(@PathVariable int orderId,
+										  @RequestHeader(value="Authorization") String authorizationHeader,
+										  Principal currentUser) {
 		
         ResponseEntity<Order> orderResult = 
         		new ResponseEntity<>(getOrder(),HttpStatus.OK);
 		
 		return orderResult;
 		
+	}
+	
+	@RequestMapping("/orderservice")
+	public ResponseEntity<String> putOrder(@RequestBody String orderJSON,
+										   @RequestHeader(value="Authorization") String authorizationHeader,
+										   Principal currentUser) {
+		
+		LOG.info("orderservice has been called");
+		
+		String orderId = UUID.randomUUID().toString();
+		
+		ResponseEntity<String> status = 
+				new ResponseEntity<String>(orderId, HttpStatus.OK);
+		
+		return status;
 	}
 	
 	private Order getOrder() {
