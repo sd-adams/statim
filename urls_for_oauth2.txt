@@ -1,5 +1,6 @@
 Authorization Code Grant
 http://localhost:9999/uaa/oauth/authorize?response_type=code&client_id=acme&redirect_uri=http://example.com&scope=webshop&state=97536
+http://localhost:5000/uaa/oauth/authorize?response_type=code&client_id=acme&redirect_uri=http://example.com&scope=webshop&state=97536
 
 Redeem access token
 curl acme:acmesecret@localhost:9999/uaa/oauth/token ^
@@ -10,16 +11,22 @@ curl acme:acmesecret@localhost:9999/uaa/oauth/token ^
  
 Implicit Grant
 http://limit:9999/uaa/oauth/authorize?response_type=token&client_id=acme&redirect_uri=http://example.com&scope=webshop&state=48532
-http://ec2-54-226-248-61.compute-1.amazonaws.com:9999/uaa/oauth/authorize?response_type=token&client_id=acme&redirect_uri=http://example.com&scope=webshop&state=48532
+http://limit:5100/uaa/oauth/authorize?response_type=token&client_id=acme&redirect_uri=http://example.com&scope=webshop&state=48532
+http://limit:5000/uaa/oauth/authorize?response_type=token&client_id=acme&redirect_uri=http://example.com&scope=webshop&state=48532
+http://ec2-54-146-155-117.compute-1.amazonaws.com:9999/uaa/oauth/authorize?response_type=token&client_id=acme&redirect_uri=http://example.com&scope=webshop&state=48532
 
 Resource Owner Password Credentials Grant
-curl -v -s acme:acmesecret@localhost:9999/uaa/oauth/token  ^
+curl -v -s acme:acmesecret@limit:5000/uaa/oauth/token  ^
  -d grant_type=password ^
  -d client_id=acme ^
  -d scope=webshop ^
- -d username=user ^
- -d password=password | jq .
+ -d username=joe ^
+ -d password=password1 | jq .
 
+Client Credentials
+curl -v -s acme:acmesecret@localhost:5000/uaa/oauth/token  ^
+ -d grant_type=client_credentials ^
+ -d scope=webshop | jq .
 
 
 curl 'http://limit:9000/orderendpoint/order/123' ^
@@ -32,14 +39,7 @@ curl -v -u user:password -d "grant_type=client_credentials" http://localhost:999
 
 curl -v ^
 -H "Content-Type: application/json" ^
--H "Authorization: Bearer 78d58749-dbfc-4066-8980-1dbacbf508dd" ^
+-H "Authorization: Bearer bcf5d54d-acba-469a-bfb7-fb88c31b733a" ^
 -d '{"id":"54712ae4-697f-42f5-98a6-133df5ad5a25","agencyId":"bcab3b39-795b-4299-871c-bad260448694","reporterId":"60ec5e15-2db4-4472-931b-e3817792c2f9","agencyRatingId":"7abc5f4c-df9b-4414-b443-6315e3aa5f59","reporterRatingId":"b6e8e8b6-d331-483b-beec-f1d1d4bc3d31","dateRequired":1496069569681,"address":{"address":null,"city":"Hurst","state":"TX","zip":"76053"},"resourceType":"COURTREPORTER","specialtyType":"STANDARD","orderStatus":"ASSIGNED","specialRequirements":"this is really important","incentives":["BONUS100"]}' ^
-"http://localhost:15398/receiveorder"
+"http://ec2-54-146-155-117:9000/orderendpoint/order"
 
-curl -X POST ^
-"http://limit:15398/receiveorder" ^
--H 'accept: */*' ^
--H 'cache-control: no-cache' ^
--H 'content-type: application/json' ^
--H 'postman-token: ab019c82-573b-2e69-1c77-3e42428250cc' ^
--d '{"id":"54712ae4-697f-42f5-98a6-133df5ad5a25","agencyId":"bcab3b39-795b-4299-871c-bad260448694","reporterId":"60ec5e15-2db4-4472-931b-e3817792c2f9","agencyRatingId":"7abc5f4c-df9b-4414-b443-6315e3aa5f59","reporterRatingId":"b6e8e8b6-d331-483b-beec-f1d1d4bc3d31","dateRequired":1496069569681,"address":{"address":null,"city":"Hurst","state":"TX","zip":"76053"},"resourceType":"COURTREPORTER","specialtyType":"STANDARD","orderStatus":"ASSIGNED","specialRequirements":"this is really important","incentives":["BONUS100"]}' 

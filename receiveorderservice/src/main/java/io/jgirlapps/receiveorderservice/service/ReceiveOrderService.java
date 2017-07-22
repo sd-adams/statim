@@ -39,20 +39,20 @@ public class ReceiveOrderService {
 	private RestTemplate restTemplate = new RestTemplate();
 
 	
-    @RequestMapping("/receiveorder")
-    public ResponseEntity<String> handleOrder(@RequestBody String orderJSON,
+    @RequestMapping("/receiveorder/{orderId}")
+    public ResponseEntity<String> handleOrder(@PathVariable("orderId") int orderId,
     		                                  @RequestHeader(value="Authorization") String authorizationHeader,
                                               Principal currentUser) {
     	//persist order
-    	LOG.info("RecieveOrderService called with order {}", orderJSON);
+    	LOG.info("RecieveOrderService called with order {}", orderId);
 		URI uri = utils.getServiceUrl("ORDERSERVICE", "http://localhost:8081/");
-        String url = uri.toString() + "/orderservice/";
+        String url = uri.toString() + "/orderservice/"  + orderId;
         
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");
         headers.add("Authorization", authorizationHeader);
 		
-        HttpEntity<String> request = new HttpEntity<String>(orderJSON, headers);
+        HttpEntity<String> request = new HttpEntity<String>("", headers);
         ResponseEntity<String> response = restTemplate.postForEntity(url, request, String.class);
         
    	

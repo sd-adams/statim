@@ -3,7 +3,11 @@ package io.jgirlapps.orderservice.models;
 import java.util.Date;
 import java.util.List;
 
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+
 public class Order {
+	@DynamoDBHashKey
 	String id;
 	String agencyId;
 	String reporterId;

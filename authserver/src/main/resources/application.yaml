@@ -1,17 +1,12 @@
 server:
   port: 0
+  contextPath: /uaa
   
-#security:
-#  ignored: /**   
-
 security:
-  oauth2:
-    resource:
-      userInfoUri: http://localhost:5000/uaa/user
+  user:
+    #name: user
+    password: password1
 
-management:
-  security:
-    enabled: false
 
 eureka:
   instance:
@@ -25,10 +20,6 @@ eureka:
 #    availabilityZones:
 #      default: ${APPLICATION_DOMAIN:${DOMAIN:defaultZone}}
 
-#stores:
-#  ribbon:
-#    ServerListRefreshInterval: 1000
-
 logging:
   level:
-    se.callista: INFO
+    org.springframework.security: DEBUG

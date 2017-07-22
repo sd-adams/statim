@@ -4,7 +4,7 @@ info:
 eureka:
   client:  
     serviceUrl:
-      defaultZone: {$SERVICE_DISCOVERY_URL}
+      defaultZone: ${SERVICE_DISCOVERY_URL}
 
 endpoints:
   restart:
@@ -18,18 +18,27 @@ zuul:
   ignoredServices: "*"
   routes:
     orderendpoint:
+      sensitiveHeaders:
       path: /orderendpoint/**
 #      stripPrefix: false
       serviceId: orderendpoint
+    uaa-service:
+      sensitiveHeaders:
+      path: /uaa/**
+      serviceId: authserver
+      stripPrefix: false
+    simpleapp:
+      path: /simple/**
+      serviceId: simpleapp
 
 server:
-  port: 9000
+  port: 5000
   
-security:
-  oauth2:
-    resource:
-      userInfoUri: http://localhost:9999/uaa/user  
-      
+#security:
+#  oauth2:
+#    resource:
+#      userInfoUri: http://localhost:9999/uaa/user 
+
 #management:
 #  security:
 #    enabled: false      
@@ -38,3 +47,14 @@ logging:
   level:
     ROOT: INFO
     org.springframework.web: INFO
+
+---
+# Eureka instance 1 when used on Docker
+spring:
+  profiles: docker1
+eureka:
+  instance:
+    hostname: discovery
+  client:
+    registerWithEureka: true
+    fetchRegistry: true    

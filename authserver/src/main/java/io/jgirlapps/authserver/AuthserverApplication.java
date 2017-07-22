@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
@@ -18,8 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.security.Principal;
 
 @SpringBootApplication
-@RestController
+@EnableDiscoveryClient
 @EnableResourceServer
+@RestController
 public class AuthserverApplication {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(AuthserverApplication.class);
@@ -56,6 +58,7 @@ public class AuthserverApplication {
 				.withClient("acme")
 				.secret("acmesecret")
 				.authorizedGrantTypes("authorization_code", "refresh_token", "implicit", "password", "client_credentials")
+				.autoApprove(true)
 				.scopes("webshop");
 		}
 	}

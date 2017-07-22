@@ -52,8 +52,15 @@ public class OrderEndpointService {
 			                       Principal currentUser) {
 		
 		LOG.info("OrderEndpointService: User={}, Auth={}, called with orderId={}", currentUser.getName(), authorizationHeader, orderId);
+		/*
 		URI uri = utils.getServiceUrl("ORDERSERVICE", "http://localhost:8081/");
         String url = uri.toString() + "/orderservice/" + orderId;
+        */
+		
+		URI uri = utils.getServiceUrl("RECEIVEORDERSERVICE", "http://localhost:8081/");
+        String url = uri.toString() + "/receiveorder/" + orderId;
+		
+		
 		
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");
