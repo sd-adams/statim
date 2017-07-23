@@ -1,0 +1,39 @@
+discovery:
+  image: statim/discovery
+  ports:
+    - "8761:8761"
+
+oauth:
+  image: statim/authserver
+  links:
+    - discovery
+    
+edgeserver:
+  image: statim/edgeserver
+  ports:
+    - "80:5000" 
+  links:
+    - oauth
+    - discovery
+    
+orderendpoint:
+  image: statim/orderendpoint
+  links:
+    - oauth
+    - discovery
+    - receiveorderservice
+    
+receiveorderservice:
+  image: statim/receiveorderservice
+  links:
+    - oauth
+    - discovery
+    - orderservice
+    
+orderservice:
+  image: statim/orderservice
+  links:
+    - oauth
+    - discovery
+
+  
