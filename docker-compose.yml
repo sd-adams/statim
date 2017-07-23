@@ -3,7 +3,7 @@ discovery:
   ports:
     - "8761:8761"
 
-oauth:
+authserver:
   image: statim/authserver
   links:
     - discovery
@@ -13,27 +13,27 @@ edgeserver:
   ports:
     - "80:5000" 
   links:
-    - oauth
+    - authserver
     - discovery
     
 orderendpoint:
   image: statim/orderendpoint
   links:
-    - oauth
+    - authserver
     - discovery
     - receiveorderservice
     
 receiveorderservice:
   image: statim/receiveorderservice
   links:
-    - oauth
+    - authserver
     - discovery
     - orderservice
     
 orderservice:
   image: statim/orderservice
   links:
-    - oauth
+    - authserver
     - discovery
 
   
