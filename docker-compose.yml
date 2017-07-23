@@ -1,5 +1,5 @@
 discovery:
-  image: statim/discovery
+  image: statim/servicediscovery
   ports:
     - "8761:8761"
 
