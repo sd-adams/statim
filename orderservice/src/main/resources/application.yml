@@ -20,4 +20,24 @@ eureka:
 security:
   oauth2:
     resource:
-      userInfoUri: http://localhost:5000/uaa/user      
+      userInfoUri: http://localhost:5000/uaa/user   
+      
+---
+# For deployment in Docker containers
+spring:
+  profiles: docker
+
+server:
+  port: 8080
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: http://discovery:8761/eureka/    
+      
+security:
+  oauth2:
+    resource:
+      userInfoUri: http://oauth:5000/uaa/user        

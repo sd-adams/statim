@@ -49,12 +49,17 @@ logging:
     org.springframework.web: INFO
 
 ---
-# Eureka instance 1 when used on Docker
+---
+# For deployment in Docker containers
 spring:
-  profiles: docker1
+  profiles: docker
+
+server:
+  port: 5000
+
 eureka:
   instance:
-    hostname: discovery
+    preferIpAddress: true
   client:
-    registerWithEureka: true
-    fetchRegistry: true    
+    serviceUrl:
+      defaultZone: http://discovery:8761/eureka/  

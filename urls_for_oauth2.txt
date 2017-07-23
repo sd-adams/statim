@@ -13,7 +13,7 @@ Implicit Grant
 http://limit:9999/uaa/oauth/authorize?response_type=token&client_id=acme&redirect_uri=http://example.com&scope=webshop&state=48532
 http://limit:5100/uaa/oauth/authorize?response_type=token&client_id=acme&redirect_uri=http://example.com&scope=webshop&state=48532
 http://limit:5000/uaa/oauth/authorize?response_type=token&client_id=acme&redirect_uri=http://example.com&scope=webshop&state=48532
-http://ec2-54-146-155-117.compute-1.amazonaws.com:9999/uaa/oauth/authorize?response_type=token&client_id=acme&redirect_uri=http://example.com&scope=webshop&state=48532
+http://ec2-34-205-23-57.compute-1.amazonaws.com:5000/uaa/oauth/authorize?response_type=token&client_id=acme&redirect_uri=http://example.com&scope=webshop&state=48532
 
 Resource Owner Password Credentials Grant
 curl -v -s acme:acmesecret@limit:5000/uaa/oauth/token  ^
