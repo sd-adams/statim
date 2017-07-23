@@ -51,4 +51,4 @@ eureka:
 security:
   oauth2:
     resource:
-      userInfoUri: http://oauth:5000/uaa/user      
+      userInfoUri: http://authserver:8080/uaa/user      
