@@ -32,6 +32,7 @@ eureka:
 logging:
   level:
     se.callista: INFO
+  file: /var/log/orderendpoint.log
     
 ---
 # For deployment in Docker containers
